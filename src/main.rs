@@ -117,20 +117,11 @@ fn render_screen(player: &Player, map: &Vec<Vec<char>>) {
 
         for y in 0..SCREEN_HEIGHT {
             if y as f64 <= ceiling {
-                screen[x][y] = ' ';
+                screen[x][y] = ' '; 
             } else if y as f64 > ceiling && y as f64 <= floor {
-                let shade = match distance_to_wall {
-                    d if d < 1.0 => '#',
-                    d if d < 2.0 => 'O',
-                    d if d < 4.0 => '+',
-                    d if d < 6.0 => '=',
-                    d if d < 8.0 => '-',
-                    d if d < 10.0 => '.',
-                    _ => ' ',
-                };
-                screen[x][y] = shade;
+                screen[x][y] = '|'; 
             } else {
-                screen[x][y] = '.';
+                screen[x][y] = '.'; 
             }
         }
     }
