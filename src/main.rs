@@ -207,3 +207,62 @@ fn render(player: &Player) {
     } 
     println!();
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_player_initial_position() {
+        let player = Player {
+            x: 0,
+            y: 0,
+            direction: Direction::North,
+        };
+        assert_eq!(player.x, 0);
+        assert_eq!(player.y, 0);
+        assert_eq!(matches!(player.direction, Direction::North), true);
+    }
+
+    #[test]
+    fn test_player_movement_north() {
+        let mut player = Player {
+            x: 2,
+            y: 2,
+            direction: Direction::North,
+        };
+        let mut action = Action::None;
+        let (dx, dy) = match player.direction {
+            Direction::North => (0, -1),
+            Direction::East => (1, 0),
+            Direction::South => (0, 1),
+            Direction::West => (-1, 0),
+        };
+
+        let x = player.x.checked_add_signed(dx);
+        let y = player.y.checked_add_signed(dy);
+        let (x, y, block) = match (x, y) {
+            (Some(x), Some(y)) if x < 5 && y < 5 => (x, y, MAP[y][x]),
+            _ => (0, 0, Block::Wall),
+        };
+
+        match block {
+            Block::Air => {
+                player.x = x;
+                player.y = y;
+                action = Action::Walk;
+            }
+            Block::Wall => {
+                action = Action::Wall;
+            }
+            Block::Exit => {
+                action = Action::Exit;
+            }
+        }
+
+        assert_eq!(player.x, 2);
+        assert_eq!(player.y, 1);
+        assert_eq!(matches!(action, Action::Walk), true);
+    }
+
+}
