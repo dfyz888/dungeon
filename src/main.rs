@@ -239,6 +239,7 @@ mod tests {
             y: 2,
             direction: Direction::North,
         };
+        #[expect(unused_assignments)]
         let mut action = Action::None;
         let (dx, dy) = match player.direction {
             Direction::North => (0, -1),
