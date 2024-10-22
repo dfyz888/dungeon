@@ -1,6 +1,7 @@
 use indoc::indoc;
 
-pub const PATTERNS: [&str; 52] = [    // Position A; Direction N;
+pub const PATTERNS: [&str; 52] = [
+    // Position A; Direction N;
     indoc! { r#"
         ╔════════════════════════╗
         ║````````````````````````║
