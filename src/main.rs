@@ -1,4 +1,4 @@
-use {input_macro::input, std::convert::TryInto};
+use input_macro::input;
 mod exit;
 mod wall;
 
