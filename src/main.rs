@@ -1,8 +1,6 @@
 use input_macro::input;
 mod exit;
 mod wall;
-// для запуска actions
-// для запуска actions
 
 #[derive(Clone, Copy)]
 enum Block {
