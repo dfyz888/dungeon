@@ -34,6 +34,7 @@ enum Direction {
     West,
 }
 
+#[derive(Clone, Copy)]
 enum Action {
     None,
     Walk,
